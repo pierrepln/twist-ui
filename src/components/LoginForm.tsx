@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { fetchApi } from "../utils/fetchApi";
 
 type Props = {
   onConnect: React.Dispatch<React.SetStateAction<null | string>>;
@@ -10,16 +11,10 @@ const LoginForm: React.FC<Props> = ({ onConnect }) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
-    const body = await fetch("http://localhost:3333/login", {
+    fetchApi("/login", {
       method: "POST",
       body: data,
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    const response = await body.json();
-    onConnect(response.email);
+    }).then(onConnect);
   };
 
   return (

@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
-import LoginForm from "./LoginForm";
+import LoginForm from "./components/LoginForm";
+import Ingredients from "./components/Ingredients";
 import Container from "@material-ui/core/Container";
-
+import Typography from "@material-ui/core/Typography";
+import { fetchApi } from "./utils/fetchApi";
 
 const App = () => {
   const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3333/me", {
-      credentials: "include",
-    }).then((body) =>
-      body.json().then(({email}) => {
-        setUser(email);
-      })
-    );
-  }, [user]);
+    fetchApi("/me").then(({ email }) => setUser(email));
+  }, []);
 
-  /* user === null ? 
-    <div>Welcome to twist-ui</div> :  */
   return (
     <Container>
       {user === null ? (
-        <div>Welcome to twist-ui</div>
+        <Typography>Welcome to twist-ui</Typography>
       ) : user === "user" ? (
-        <div>Logged in</div>
+        <Ingredients />
       ) : (
         <LoginForm onConnect={setUser}></LoginForm>
       )}
