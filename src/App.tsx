@@ -9,7 +9,9 @@ const App = () => {
   const [user, setUser] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchApi("/me").then(({ email }) => setUser(email));
+    fetchApi("/me")
+    .then(({ email }) => setUser(email))
+    .catch(() => setUser(''));
   }, []);
 
   return (
