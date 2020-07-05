@@ -2,6 +2,11 @@
 
 exports[`renders properly 1`] = `
 <div>
+  <h2
+    class="MuiTypography-root MuiTypography-h2"
+  >
+    Ingredients
+  </h2>
   <ul
     class="MuiList-root MuiList-padding"
   />
