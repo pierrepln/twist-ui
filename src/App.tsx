@@ -12,7 +12,7 @@ const App = () => {
     fetchApi("/me")
     .then(({ email }) => setUser(email))
     .catch(() => setUser(''));
-  }, []);
+  }, [user]);
 
   return (
     <Container>
