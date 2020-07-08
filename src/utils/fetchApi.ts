@@ -7,6 +7,7 @@ export const fetchApi = async (endpoint: string, options = {}) => {
     ...options,
   });
 
-  const data = await response.json();
-  if (response.ok) return data;
+  return response.ok && response.status !== 204
+    ? await response.json()
+    : response;
 };
