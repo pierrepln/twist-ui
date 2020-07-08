@@ -7,7 +7,7 @@ type Props = {
   onConnect: React.Dispatch<React.SetStateAction<null | string>>;
 };
 
-const LoginForm: React.FC<Props> = ({ onConnect }) => {
+const LoginForm = ({ onConnect }: Props) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
