@@ -4,8 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
 type Props = {
-  // TODO: fix the shit
-  handleSubmit: any;
+  handleSubmit: (e: React.FormEvent) => void;
 };
 
 const AddIngredient = ({ handleSubmit }: Props) => {

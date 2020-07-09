@@ -17,15 +17,11 @@ type Action =
       payload: Ingredient[];
     }
   | {
-      type: "create" | "update";
+      type: "create" | "update" | "delete";
       payload: Ingredient;
-    }
-  | {
-      type: "delete";
-      payload: number;
     };
 
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "set":
       return { ...state, ingredients: action.payload };
@@ -44,7 +40,7 @@ const reducer = (state: State, action: Action) => {
       return {
         ...state,
         ingredients: state.ingredients.filter(
-          (ingredient) => ingredient.id !== action.payload
+          (ingredient) => ingredient !== action.payload
         ),
       };
     default:
@@ -74,18 +70,21 @@ export const useIngredients = () => {
       body: candidate,
     })
       .then((ingredient) => {
-        console.log("CREATION");
         dispatch({ type: "create", payload: ingredient });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
-  const updateIngredient = async (e: React.SyntheticEvent, id: number) => {
+  const updateIngredient = async (
+    e: React.SyntheticEvent,
+    prevIngredient: Ingredient
+  ) => {
     e.preventDefault();
-    const data = new FormData(e.target as HTMLFormElement);
+    const { id } = prevIngredient;
+    const candidate = new FormData(e.target as HTMLFormElement);
     await fetchApi(`/ingredients/${id}`, {
       method: "PUT",
-      body: data,
+      body: candidate,
     })
       .then(({ ingredient }) => {
         dispatch({ type: "update", payload: ingredient });
@@ -93,13 +92,16 @@ export const useIngredients = () => {
       .catch((e) => console.error(e));
   };
 
-  const deleteIngredient = async (e: React.SyntheticEvent, id: number) => {
+  const deleteIngredient = async (
+    e: React.SyntheticEvent,
+    prevIngredient: Ingredient
+  ) => {
     e.preventDefault();
+    const { id } = prevIngredient;
     await fetchApi(`/ingredients/${id}`, {
       method: "DELETE",
     }).then(() => {
-      console.log(id);
-      dispatch({ type: "delete", payload: id });
+      dispatch({ type: "delete", payload: prevIngredient });
     });
   };
 
