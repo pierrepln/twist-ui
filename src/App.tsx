@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import LoginForm from "./components/LoginForm";
-import Ingredients from "./components/Ingredients";
+import LoginForm from "./LoginForm";
+import Ingredients from "./Ingredients";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { fetchApi } from "./utils/fetchApi";

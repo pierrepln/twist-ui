@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import LoginForm from "./LoginForm";
+import Ingredients from '.'
 
 test("renders properly", () => {
-  const { container } = render(<LoginForm />);
+  const { container } = render(<Ingredients />);
   expect(container).toMatchSnapshot();
 });

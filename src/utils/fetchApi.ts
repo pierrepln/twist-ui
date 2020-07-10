@@ -7,6 +7,12 @@ export const fetchApi = async (endpoint: string, options = {}) => {
     ...options,
   });
 
-  const data = await response.json();
-  if (response.ok) return data;
+  try {
+    if (!response.ok) throw new Error();
+    return response.ok && response.status !== 204
+      ? await response.json()
+      : response;
+  } catch {
+    throw new Error();
+  }
 };
