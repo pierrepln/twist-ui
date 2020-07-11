@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import { fetchApi } from "../utils/fetchApi";
 
@@ -18,34 +19,36 @@ const LoginForm = ({ onConnect }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        variant="outlined"
-        margin="normal"
-        required
-        fullWidth
-        id="email"
-        label="Username"
-        name="email"
-        autoComplete="email"
-        autoFocus
-      />
-      <TextField
-        variant="outlined"
-        margin="normal"
-        required
-        fullWidth
-        id="password"
-        label="Password"
-        name="password"
-        type="password"
-        autoComplete="current-password"
-        autoFocus
-      />
-      <Button type="submit" fullWidth variant="contained" color="primary">
-        Sign in
-      </Button>
-    </form>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Username"
+          name="email"
+          autoComplete="email"
+          autoFocus
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="password"
+          label="Password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          autoFocus
+        />
+        <Button type="submit" fullWidth variant="contained" color="primary">
+          Sign in
+        </Button>
+      </form>
+    </Container>
   );
 };
 
