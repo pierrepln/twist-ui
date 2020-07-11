@@ -39,7 +39,6 @@ const IngredientListItem = ({
 
   return (
     <ListItem
-      key={ingredient.id}
       onMouseEnter={onMouseEnterHandler}
       onMouseLeave={onMouseLeaveHandler}
     >
