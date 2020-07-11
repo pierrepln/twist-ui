@@ -29,6 +29,7 @@ const IngredientsList = ({
     {ingredients ? (
       ingredients.map((i) => (
         <IngredientListItem
+          key={i.id}
           ingredient={i}
           updateIngredient={updateIngredient}
           deleteIngredient={deleteIngredient}
