@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [page] = useState("ingredients");
 
   const handleDrawerOpen = () => {
